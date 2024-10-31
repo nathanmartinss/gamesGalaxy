@@ -1,15 +1,11 @@
-.navbar-brand {
-  margin-left: 10px;
-}
-
-.nav-item-login {
-  margin-right: 10px;
+body {
+  background-color: black;
+  color: white;
 }
 
 .navbar-nav {
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
+  margin-left: 10px;
+  margin-right: 20px;
 }
 
 .navbar-toggler {

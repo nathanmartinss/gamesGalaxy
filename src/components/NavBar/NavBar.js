@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./NavBar.css";
-import CartWidget from "../CartWidget";
+import CartWidget from "../CartWidget/CartWidget";
 
 const NavBar = () => {
   return (

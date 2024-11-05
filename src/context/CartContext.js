@@ -10,20 +10,32 @@ export const CartProvider = ({ children }) => {
   const addToCart = (item, quantity) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
-      if (existingItem) {
-        return prevCart.map((cartItem) =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + quantity }
-            : cartItem
-        );
+      const currentQuantity = existingItem ? existingItem.quantity : 0;
+      const totalQuantity = currentQuantity + quantity;
+
+      if (totalQuantity <= item.stock) {
+        if (existingItem) {
+          return prevCart.map((cartItem) =>
+            cartItem.id === item.id
+              ? { ...cartItem, quantity: totalQuantity }
+              : cartItem
+          );
+        } else {
+          return [...prevCart, { ...item, quantity }];
+        }
       } else {
-        return [...prevCart, { ...item, quantity }];
+        alert("Quantidade em estoque insuficiente.");
+        return prevCart;
       }
     });
   };
 
+  const getTotalItems = () => {
+    return cart.reduce((total, item) => total + item.quantity, 0);
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart, getTotalItems }}>
       {children}
     </CartContext.Provider>
   );

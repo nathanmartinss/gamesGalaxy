@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "./components/NavBar/NavBar.js";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer.js";
+import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer.js";
 import { CartProvider } from "./context/CartContext";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./components/ItemListContainer/ItemListContainer.css";
@@ -13,6 +14,7 @@ function App() {
         <div className="itens-mais-vendidos">
           <ItemListContainer greeting="MAIS VENDIDOS!" />
         </div>
+        <ItemDetailContainer />
       </div>
     </CartProvider>
   );

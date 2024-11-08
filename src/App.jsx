@@ -12,9 +12,10 @@ function App() {
       <div className="App">
         <NavBar />
         <div className="itens-mais-vendidos">
-          <ItemListContainer greeting="MAIS VENDIDOS!" />
+          <ItemListContainer greeting="Mais vendidos" />
+
+          <ItemDetailContainer />
         </div>
-        <ItemDetailContainer />
       </div>
     </CartProvider>
   );

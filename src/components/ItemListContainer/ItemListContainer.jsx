@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ItemList from "../Item/ItemList.jsx";
-import { useCart } from "../../context/CartContext"; // Importa o contexto do carrinho
+import { useCart } from "../../context/CartContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const ItemListContainer = ({ greeting }) => {
   const [items, setItems] = useState([]);
-  const { addToCart } = useCart(); // Usa o contexto do carrinho
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchItems = new Promise((resolve) => {
@@ -47,7 +47,6 @@ const ItemListContainer = ({ greeting }) => {
     });
   }, []);
 
-  // Função para adicionar ao carrinho
   const handleAddToCart = (item, quantity) => {
     addToCart(item, quantity);
   };
@@ -56,7 +55,6 @@ const ItemListContainer = ({ greeting }) => {
     <div className="container">
       <h2>{greeting}</h2>
       <ItemList items={items} onAdd={handleAddToCart} />{" "}
-      {/* Passa handleAddToCart */}
     </div>
   );
 };

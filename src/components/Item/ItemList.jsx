@@ -1,7 +1,7 @@
 import React from "react";
 import Item from "../Item/Item";
 
-const ItemList = ({ items }) => {
+const ItemList = ({ items, onAdd }) => {
   return (
     <div className="d-flex justify-content-around flex-wrap">
       {items.map((item) => (
@@ -12,6 +12,8 @@ const ItemList = ({ items }) => {
           description={item.description}
           price={item.price}
           pictureUrl={item.pictureUrl}
+          stock={item.stock}
+          onAdd={(quantity) => onAdd(item, quantity)}
         />
       ))}
     </div>

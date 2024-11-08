@@ -13,19 +13,24 @@ export const CartProvider = ({ children }) => {
       const currentQuantity = existingItem ? existingItem.quantity : 0;
       const totalQuantity = currentQuantity + quantity;
 
-      if (totalQuantity <= item.stock) {
-        if (existingItem) {
-          return prevCart.map((cartItem) =>
-            cartItem.id === item.id
-              ? { ...cartItem, quantity: totalQuantity }
-              : cartItem
-          );
-        } else {
-          return [...prevCart, { ...item, quantity }];
-        }
-      } else {
+      if (totalQuantity > 5) {
+        alert("Quantidade máxima de 5 unidades atingida para este item.");
+        return prevCart;
+      }
+
+      if (totalQuantity > item.stock) {
         alert("Quantidade em estoque insuficiente.");
         return prevCart;
+      }
+
+      if (existingItem) {
+        return prevCart.map((cartItem) =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: totalQuantity }
+            : cartItem
+        );
+      } else {
+        return [...prevCart, { ...item, quantity }];
       }
     });
   };

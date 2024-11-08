@@ -5,6 +5,7 @@ import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailCont
 import { CartProvider } from "./context/CartContext.jsx";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./components/ItemListContainer/ItemListContainer.css";
+import "../src/components/ItemDetailContainer/ItemDetail.css";
 
 function App() {
   return (
@@ -14,7 +15,10 @@ function App() {
         <div className="itens-mais-vendidos">
           <ItemListContainer greeting="Mais vendidos" />
 
-          <ItemDetailContainer />
+          <div className="itens-mais-vendidos">
+            {" "}
+            <ItemDetailContainer selectedItemId={1} />
+          </div>
         </div>
       </div>
     </CartProvider>

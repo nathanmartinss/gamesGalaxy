@@ -33,6 +33,7 @@ function App() {
                 </div>
               }
             />
+            <Route path="/category/:id" element={<ItemListContainer />} />
             <Route path="/details/:id" element={<ItemDetailPage />} />
           </Routes>
         </div>

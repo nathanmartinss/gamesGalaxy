@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -35,20 +36,21 @@ const getItem = (id) => {
 
   return new Promise((resolve) => {
     setTimeout(() => {
-      const item = items.find((item) => item.id === id);
+      const item = items.find((item) => item.id === parseInt(id, 10));
       resolve(item);
     }, 2000);
   });
 };
 
-const ItemDetailContainer = ({ selectedItemId = 1 }) => {
+const ItemDetailContainer = () => {
+  const { id } = useParams(); // Captura o id do item da URL
   const [item, setItem] = useState(null);
 
   useEffect(() => {
-    getItem(selectedItemId).then((data) => {
+    getItem(id).then((data) => {
       setItem(data);
     });
-  }, [selectedItemId]);
+  }, [id]);
 
   return (
     <div className="container">

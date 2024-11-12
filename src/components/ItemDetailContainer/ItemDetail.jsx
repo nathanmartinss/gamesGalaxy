@@ -1,12 +1,10 @@
 import React from "react";
-import ItemCount from "./ItemCount";
-import { useCart } from "../../context/CartContext";
+import ItemCount from "../ItemCount/ItemCount";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const ItemDetail = ({ id, title, description, price, pictureUrl, stock }) => {
-  const { addToCart } = useCart();
-
   const handleAddToCart = (quantity) => {
-    addToCart({ id, title, description, price, pictureUrl, stock }, quantity);
+    console.log(`Adding ${quantity} of ${title} to the cart`);
   };
 
   return (
@@ -16,7 +14,7 @@ const ItemDetail = ({ id, title, description, price, pictureUrl, stock }) => {
         <h5 className="card-title">{title}</h5>
         <p className="card-text">{description}</p>
         <p className="card-text">Preço: R${price}</p>
-        <ItemCount stock={stock} onAdd={handleAddToCart} /> {}
+        <ItemCount stock={stock} onAdd={handleAddToCart} />
       </div>
     </div>
   );

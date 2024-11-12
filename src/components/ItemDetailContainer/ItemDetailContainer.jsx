@@ -43,7 +43,7 @@ const getItem = (id) => {
 };
 
 const ItemDetailContainer = () => {
-  const { id } = useParams(); // Captura o id do item da URL
+  const { id } = useParams();
   const [item, setItem] = useState(null);
 
   useEffect(() => {

@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const ItemListContainer = ({ greeting }) => {
   const [items, setItems] = useState([]);
   const { addToCart } = useCart();
-  const { id: categoryId } = useParams(); // Captura o parâmetro de categoria da URL
+  const { id: categoryId } = useParams();
 
   useEffect(() => {
     const fetchItems = new Promise((resolve) => {

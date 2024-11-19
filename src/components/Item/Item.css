@@ -1,7 +1,9 @@
 .card-img-top {
   object-fit: cover;
-  height: 200px;
-  margin-top: 10px;
+  height: 180px;
+  width: 100%;
+  margin-top: 5px;
+  border-radius: 5px;
 }
 
 .item-count {
@@ -15,7 +17,7 @@
 
 .item-count .btn {
   margin: 0 5px;
-  width: 45%;
+  width: 40%;
 }
 
 .card {
@@ -24,6 +26,9 @@
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-body {
@@ -35,6 +40,16 @@
 }
 
 .add-to-cart-btn {
-  width: calc(100% - 20px);
-  margin: 10px;
+  width: 70%;
+  margin: 10px auto;
+  padding: 8px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #0056b3;
 }

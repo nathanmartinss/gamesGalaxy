@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-import ItemCount from "../ItemCount/ItemCount";
+import ItemCount from "../../components/ItemCount/ItemCount";
 
 const itemData = {
   1: {

@@ -11,11 +11,16 @@
 .cart-page h1 {
   text-align: center;
   margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
 }
 
 .cart-table {
   width: 100%;
   border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .cart-table th,
@@ -27,6 +32,12 @@
 
 .cart-table th {
   background-color: #f0f0f0;
+  font-weight: bold;
+  color: #555;
+}
+
+.cart-table td {
+  background-color: #ffffff;
 }
 
 .cart-table button {
@@ -37,28 +48,63 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cart-table button:hover {
   background-color: #0056b3;
 }
 
+.cart-summary {
+  text-align: right;
+  background-color: #f1f1f1;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-summary h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
 .finalize-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 20px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.finalize-btn,
+.clear-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .finalize-btn {
-  padding: 10px 20px;
   background-color: #28a745;
   color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
 }
 
 .finalize-btn:hover {
   background-color: #218838;
+}
+
+.clear-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.clear-btn:hover {
+  background-color: #c82333;
 }

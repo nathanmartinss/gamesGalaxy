@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./CartPage.css";
 
 const CartPage = () => {
-  const { cart, addItem, removeItem, clear } = useCart();
+  const { cart, addItem, removeItem, clear, getTotalPrice } = useCart();
   const navigate = useNavigate();
 
   const handleIncrease = (item) => {
@@ -41,7 +41,7 @@ const CartPage = () => {
               <tr>
                 <th>Produto</th>
                 <th>Quantidade</th>
-                <th>Preço</th>
+                <th>Preço Unitário</th>
                 <th>Total</th>
                 <th>Ações</th>
               </tr>
@@ -52,11 +52,24 @@ const CartPage = () => {
                   <td>{item.title}</td>
                   <td>{item.quantity}</td>
                   <td>R$ {item.price}</td>
-                  <td>R$ {item.price * item.quantity}</td>
+                  <td>R$ {(item.price * item.quantity).toFixed(2)}</td>
                   <td>
-                    <button onClick={() => handleIncrease(item)}>+</button>
-                    <button onClick={() => handleDecrease(item)}>-</button>
-                    <button onClick={() => removeItem(item.id)}>
+                    <button
+                      className="btn btn-success btn-sm me-2"
+                      onClick={() => handleIncrease(item)}
+                    >
+                      +
+                    </button>
+                    <button
+                      className="btn btn-warning btn-sm me-2"
+                      onClick={() => handleDecrease(item)}
+                    >
+                      -
+                    </button>
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => removeItem(item.id)}
+                    >
                       Remover
                     </button>
                   </td>
@@ -64,12 +77,16 @@ const CartPage = () => {
               ))}
             </tbody>
           </table>
-          <div className="finalize-container">
+          <div className="cart-summary">
+            <h3>Total Geral: R$ {getTotalPrice().toFixed(2)}</h3>
             <button
               className="btn btn-primary finalize-btn"
               onClick={handleFinalizePurchase}
             >
               Finalizar Compra
+            </button>
+            <button className="btn btn-danger clear-btn" onClick={clear}>
+              Limpar Carrinho
             </button>
           </div>
         </>

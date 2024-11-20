@@ -76,7 +76,7 @@ body {
   font-size: 0.8rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
   .navbar-nav {
     text-align: center;
     margin: 0;

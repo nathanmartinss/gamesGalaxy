@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import "./CartPage.css";
 
 const CartPage = () => {
-  const { cart, addToCart, removeFromCart, clearCart } = useCart();
+  const { cart, addItem, removeItem, clear } = useCart();
   const navigate = useNavigate();
 
   const handleIncrease = (item) => {
     if (item.quantity < 5 && item.quantity < item.stock) {
-      addToCart(item, 1);
+      addItem(item, 1);
     } else {
       alert("Limite de 5 unidades ou estoque atingido.");
     }
@@ -17,15 +17,15 @@ const CartPage = () => {
 
   const handleDecrease = (item) => {
     if (item.quantity > 1) {
-      addToCart(item, -1);
+      addItem(item, -1);
     } else {
-      removeFromCart(item.id);
+      removeItem(item.id);
     }
   };
 
   const handleFinalizePurchase = () => {
     alert("Compra finalizada! Obrigado por comprar conosco.");
-    clearCart();
+    clear();
     navigate("/");
   };
 
@@ -56,7 +56,7 @@ const CartPage = () => {
                   <td>
                     <button onClick={() => handleIncrease(item)}>+</button>
                     <button onClick={() => handleDecrease(item)}>-</button>
-                    <button onClick={() => removeFromCart(item.id)}>
+                    <button onClick={() => removeItem(item.id)}>
                       Remover
                     </button>
                   </td>

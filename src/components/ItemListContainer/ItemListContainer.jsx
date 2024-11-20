@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const ItemListContainer = ({ greeting }) => {
   const [items, setItems] = useState([]);
-  const { addItem } = useCart();
+  const { addItem, getItemQuantity } = useCart();
   const { id: categoryId } = useParams();
 
   useEffect(() => {
@@ -87,13 +87,27 @@ const ItemListContainer = ({ greeting }) => {
   }, [categoryId]);
 
   const handleAddToCart = (item, quantity) => {
+    const currentQuantity = getItemQuantity(item.id);
+    const availableStock = item.stock - currentQuantity;
+
+    if (quantity > availableStock) {
+      alert(
+        `Você já atingiu o limite ou não há estoque suficiente de ${item.title}.`
+      );
+      return;
+    }
+
     addItem(item, quantity);
   };
 
+  const itemsWithAvailableStock = items.map((item) => ({
+    ...item,
+    availableStock: item.stock - getItemQuantity(item.id),
+  }));
+
   return (
     <div className="container">
-      <h2>{greeting}</h2>
-      <ItemList items={items} onAdd={handleAddToCart} />
+      <ItemList items={itemsWithAvailableStock} onAdd={handleAddToCart} />
     </div>
   );
 };

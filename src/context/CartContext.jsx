@@ -14,12 +14,12 @@ export const CartProvider = ({ children }) => {
       const totalQuantity = currentQuantity + quantity;
 
       if (totalQuantity > 5) {
-        alert("Quantidade máxima de 5 unidades atingida para este item.");
+        alert(`Você já atingiu o limite de 5 unidades de ${item.title}.`);
         return prevCart;
       }
 
       if (totalQuantity > item.stock) {
-        alert("Quantidade em estoque insuficiente.");
+        alert(`Quantidade em estoque insuficiente para ${item.title}.`);
         return prevCart;
       }
 
@@ -55,6 +55,11 @@ export const CartProvider = ({ children }) => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
+  const getItemQuantity = (id) => {
+    const item = cart.find((cartItem) => cartItem.id === id);
+    return item ? item.quantity : 0;
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -64,7 +69,8 @@ export const CartProvider = ({ children }) => {
         clear,
         isInCart,
         getTotalItems,
-        getTotalPrice, // Adicionado para cálculo do total geral
+        getTotalPrice,
+        getItemQuantity,
       }}
     >
       {children}

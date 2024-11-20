@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import ItemCount from "../../components/ItemCount/ItemCount";
@@ -36,25 +36,15 @@ const itemData = {
 const ItemDetailPage = () => {
   const { id } = useParams();
   const item = itemData[id];
-  const { addItem } = useCart();
+  const { addItem, getItemQuantity } = useCart();
+
+  const currentQuantity = getItemQuantity(item.id);
+  const availableStock = item.stock - currentQuantity;
 
   const handleAddToCart = (quantity) => {
     addItem(item, quantity);
     alert(`Adicionado ${quantity} unidades de ${item.title} ao carrinho!`);
   };
-
-  if (!item) {
-    return (
-      <div
-        style={{
-          textAlign: "center",
-          marginTop: "50px",
-        }}
-      >
-        <h2>Produto não encontrado</h2>
-      </div>
-    );
-  }
 
   return (
     <div
@@ -67,7 +57,11 @@ const ItemDetailPage = () => {
           <h5 className="card-title">{item.title}</h5>
           <p className="card-text">{item.description}</p>
           <p className="card-text">Preço: R$ {item.price}</p>
-          <ItemCount stock={item.stock} initial={1} onAdd={handleAddToCart} />
+          <ItemCount
+            stock={availableStock}
+            initial={1}
+            onAdd={handleAddToCart}
+          />
         </div>
       </div>
     </div>

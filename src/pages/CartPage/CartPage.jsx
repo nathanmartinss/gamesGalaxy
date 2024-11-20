@@ -33,7 +33,12 @@ const CartPage = () => {
     <div className="cart-page">
       <h1>Seu Carrinho</h1>
       {cart.length === 0 ? (
-        <p>O carrinho está vazio.</p>
+        <div className="empty-cart">
+          <p>Seu carrinho está vazio. 😞</p>
+          <button className="btn btn-secondary" onClick={() => navigate("/")}>
+            Continuar Comprando
+          </button>
+        </div>
       ) : (
         <>
           <table className="cart-table">
@@ -51,7 +56,7 @@ const CartPage = () => {
                 <tr key={item.id}>
                   <td>{item.title}</td>
                   <td>{item.quantity}</td>
-                  <td>R$ {item.price}</td>
+                  <td>R$ {item.price.toFixed(2)}</td>
                   <td>R$ {(item.price * item.quantity).toFixed(2)}</td>
                   <td>
                     <button

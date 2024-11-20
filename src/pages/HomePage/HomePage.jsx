@@ -8,7 +8,7 @@ const HomePage = () => {
     <div className="container">
       <div className="itens-mais-vendidos">
         <div className="texto-homepage">
-          <h2>Itens mais vendidos</h2>
+          <h2>Itens mais vendidos!</h2>
         </div>
         <ItemListContainer />
       </div>

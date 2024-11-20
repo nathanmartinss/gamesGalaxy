@@ -18,10 +18,10 @@ const itemData = {
 const ItemDetailPage = () => {
   const { id } = useParams();
   const item = itemData[id];
-  const { addToCart } = useCart();
+  const { addItem } = useCart();
 
   const handleAddToCart = (quantity) => {
-    addToCart(item, quantity);
+    addItem(item, quantity);
     alert(`Adicionado ${quantity} unidades de ${item.title} ao carrinho!`);
   };
 

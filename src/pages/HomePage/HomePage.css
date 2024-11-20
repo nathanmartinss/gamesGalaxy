@@ -5,3 +5,23 @@
   color: white;
   margin: 20px;
 }
+
+.carousel {
+  max-height: 500px;
+  margin: 20px;
+}
+
+.carousel img {
+  object-fit: cover;
+  max-height: 300px;
+}
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.carousel .btn {
+  margin-top: 10px;
+}

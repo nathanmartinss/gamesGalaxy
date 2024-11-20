@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const ItemListContainer = ({ greeting }) => {
   const [items, setItems] = useState([]);
-  const { addToCart } = useCart();
+  const { addItem } = useCart();
   const { id: categoryId } = useParams();
 
   useEffect(() => {
@@ -87,7 +87,7 @@ const ItemListContainer = ({ greeting }) => {
   }, [categoryId]);
 
   const handleAddToCart = (item, quantity) => {
-    addToCart(item, quantity);
+    addItem(item, quantity);
   };
 
   return (

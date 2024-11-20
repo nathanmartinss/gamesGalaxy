@@ -1,0 +1,13 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+.navbar-nav {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.navbar-toggler {
+  margin-right: 10px;
+}

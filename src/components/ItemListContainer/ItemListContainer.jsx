@@ -1,115 +1,52 @@
-import React, { useState, useEffect } from "react";
-import ItemList from "../Item/ItemList.jsx";
-import { useParams } from "react-router-dom";
-import { useCart } from "../../context/CartContext";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState, useEffect } from "react"; // Importa React, useState e useEffect
+import { useParams } from "react-router-dom"; // Importa useParams para capturar parâmetros da URL
+import ItemList from "../Item/ItemList.jsx"; // Importa o componente ItemList
+import { useCart } from "../../context/CartContext"; // Importa o contexto do carrinho
+import { fetchItems } from "../../utils/firestoreService.jsx"; // Importa a função fetchItems para buscar itens do Firebase
+import "bootstrap/dist/css/bootstrap.min.css"; // Importa os estilos do Bootstrap
 
+// Componente que renderiza uma lista de itens com base na categoria
 const ItemListContainer = ({ greeting }) => {
+  // Estado para armazenar os itens a serem exibidos
   const [items, setItems] = useState([]);
-  const { addItem, getItemQuantity } = useCart();
+  // Captura o ID da categoria a partir dos parâmetros da URL
   const { id: categoryId } = useParams();
+  // Obtém a função addItem do contexto do carrinho
+  const { addItem } = useCart();
 
+  // useEffect que executa a busca dos itens no Firebase quando a categoria muda
   useEffect(() => {
-    const fetchItems = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve([
-          {
-            id: 1,
-            title: "PlayStation 5",
-            category: "console",
-            description: "O console de próxima geração da Sony.",
-            price: 4999,
-            pictureUrl:
-              "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$",
-            stock: 5,
-          },
-          {
-            id: 2,
-            title: "Xbox Series X",
-            category: "console",
-            description: "O console mais poderoso da Microsoft.",
-            price: 4599,
-            pictureUrl:
-              "https://cms-assets.xboxservices.com/assets/68/a0/68a0e50d-0d13-42b1-8498-e55cef8a9133.png?n=642227_Hero-Gallery-0_A2_857x676.png",
-            stock: 5,
-          },
-          {
-            id: 3,
-            title: "Nintendo Switch",
-            category: "console",
-            description: "A versatilidade de um console híbrido.",
-            price: 2999,
-            pictureUrl:
-              "https://assets.nintendo.com/image/upload/f_auto/q_auto/c_fill,w_300/ncom/en_US/switch/system/three-modes-in-one",
-            stock: 5,
-          },
-          {
-            id: 4,
-            title: "The Last Of Us 2",
-            category: "jogo",
-            description: "Aventura exclusiva para PlayStation.",
-            price: 199,
-            pictureUrl:
-              "https://image.api.playstation.com/vulcan/ap/rnd/202312/0117/7f1d9478fabee95562ace660b90e89b0d87a620e1950874a.png",
-            stock: 10,
-          },
-          {
-            id: 5,
-            title: "Super Mario Bros Wonder",
-            category: "jogo",
-            description: "Aventura clássica de Mario para o Nintendo Switch.",
-            price: 249,
-            pictureUrl:
-              "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000068688/1b2766c7a82e706d1465b6e138b1d96d4de7bd7cd7f52831ea149c9afb072250",
-            stock: 8,
-          },
-          {
-            id: 6,
-            title: "Halo 5: Guardians",
-            category: "jogo",
-            description: "Jogo de tiro exclusivo para Xbox.",
-            price: 179,
-            pictureUrl:
-              "https://assets-prd.ignimgs.com/2021/12/06/halo5-guardians-1638829716649.jpg?width=300&crop=1%3A1%2Csmart&auto=webp",
-            stock: 7,
-          },
-        ]);
-      }, 2000);
-    });
-
-    fetchItems.then((data) => {
-      if (categoryId) {
-        setItems(data.filter((item) => item.category === categoryId));
-      } else {
-        setItems(data);
+    const getItems = async () => {
+      try {
+        // Busca itens do Firestore, filtrando pela categoria se necessário
+        const itemsFromFirestore = await fetchItems(categoryId);
+        setItems(itemsFromFirestore); // Atualiza o estado com os itens recebidos
+      } catch (error) {
+        console.error("Erro ao carregar itens:", error); // Exibe erros no console
       }
-    });
-  }, [categoryId]);
+    };
 
+    getItems(); // Chama a função para buscar itens
+  }, [categoryId]); // Dependência: será executado novamente quando categoryId mudar
+
+  // Função para adicionar itens ao carrinho
   const handleAddToCart = (item, quantity) => {
-    const currentQuantity = getItemQuantity(item.id);
-    const availableStock = item.stock - currentQuantity;
-
-    if (quantity > availableStock) {
-      alert(
-        `Você já atingiu o limite ou não há estoque suficiente de ${item.title}.`
-      );
-      return;
-    }
-
-    addItem(item, quantity);
+    addItem(item, quantity); // Usa o contexto do carrinho para adicionar o item
   };
 
-  const itemsWithAvailableStock = items.map((item) => ({
-    ...item,
-    availableStock: item.stock - getItemQuantity(item.id),
-  }));
-
+  // Renderiza o conteúdo do componente
   return (
     <div className="container">
-      <ItemList items={itemsWithAvailableStock} onAdd={handleAddToCart} />
+      {/* Verifica se há itens para exibir */}
+      {items.length > 0 ? (
+        // Renderiza a lista de itens, passando a função handleAddToCart
+        <ItemList items={items} onAdd={handleAddToCart} />
+      ) : (
+        // Exibe uma mensagem enquanto os itens estão sendo carregados
+        <p>Carregando itens...</p>
+      )}
     </div>
   );
 };
 
-export default ItemListContainer;
+export default ItemListContainer; // Exporta o componente para uso em outros arquivos

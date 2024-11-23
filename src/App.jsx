@@ -27,6 +27,7 @@ function App() {
           {/* Página de detalhes de um item específico com busca por ID */}
           <Route path="/item/:id" element={<ItemDetailContainer />} />
 
+          {/* Página de detalhes de um item específico com busca por ID */}
           <Route path="/details/:id" element={<ItemDetailPage />} />
 
           {/* Página do carrinho */}

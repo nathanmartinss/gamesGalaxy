@@ -1,61 +1,48 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
+import { fetchItemById } from "../../utils/firestoreService"; // Centralize esta função no firestoreService.js
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const getItem = (id) => {
-  const items = [
-    {
-      id: 1,
-      title: "PlayStation 5",
-      description: "O console de próxima geração da Sony.",
-      price: 4999,
-      pictureUrl:
-        "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$",
-      stock: 5,
-    },
-    {
-      id: 2,
-      title: "Xbox Series X",
-      description: "O console mais poderoso da Microsoft.",
-      price: 4599,
-      pictureUrl:
-        "https://cms-assets.xboxservices.com/assets/68/a0/68a0e50d-0d13-42b1-8498-e55cef8a9133.png?n=642227_Hero-Gallery-0_A2_857x676.png",
-      stock: 5,
-    },
-    {
-      id: 3,
-      title: "Nintendo Switch",
-      description: "A versatilidade de um console híbrido.",
-      price: 2999,
-      pictureUrl:
-        "https://assets.nintendo.com/image/upload/f_auto/q_auto/c_fill,w_300/ncom/en_US/switch/system/three-modes-in-one",
-      stock: 5,
-    },
-  ];
-
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const item = items.find((item) => item.id === parseInt(id, 10));
-      resolve(item);
-    }, 2000);
-  });
-};
-
+/**
+ * Componente ItemDetailContainer
+ * Responsável por buscar e exibir os detalhes de um item específico.
+ */
 const ItemDetailContainer = () => {
-  const { id } = useParams();
-  const [item, setItem] = useState(null);
+  const { id } = useParams(); // Obtém o ID do item a partir da URL
+  const [item, setItem] = useState(null); // Estado para armazenar os dados do item
+  const [loading, setLoading] = useState(true); // Estado de carregamento
+  const [error, setError] = useState(null); // Estado de erro
 
   useEffect(() => {
-    getItem(id).then((data) => {
-      setItem(data);
-    });
-  }, [id]);
+    if (!id) {
+      setError("ID inválido ou ausente.");
+      setLoading(false);
+      return;
+    }
+
+    const getItem = async () => {
+      setLoading(true);
+      try {
+        const data = await fetchItemById(id); // Busca o item pelo ID
+        setItem(data); // Atualiza o estado com os dados do item
+      } catch (err) {
+        setError("Erro ao carregar o item. Tente novamente mais tarde."); // Define uma mensagem de erro
+      } finally {
+        setLoading(false); // Finaliza o estado de carregamento
+      }
+    };
+
+    getItem();
+  }, [id]); // Reexecuta o efeito quando o ID muda
 
   return (
     <div className="container">
-      <h2>Saiba mais sobre os nossos produtos</h2>
-      {item ? <ItemDetail {...item} /> : <p>Carregando...</p>}
+      {loading && <p>Carregando...</p>} {/* Exibe mensagem de carregamento */}
+      {error && <p className="text-danger">{error}</p>}{" "}
+      {/* Exibe mensagem de erro */}
+      {item && <ItemDetail {...item} />}{" "}
+      {/* Renderiza o componente de detalhes */}
     </div>
   );
 };

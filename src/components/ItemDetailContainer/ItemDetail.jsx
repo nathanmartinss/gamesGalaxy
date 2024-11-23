@@ -4,22 +4,31 @@ import { useCart } from "../../context/CartContext";
 import ItemCount from "../ItemCount/ItemCount";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+/**
+ * Componente para exibir os detalhes de um item.
+ * @param {Object} props - Dados do item, incluindo id, title, description, price, pictureUrl e stock.
+ */
 const ItemDetail = ({ id, title, description, price, pictureUrl, stock }) => {
-  const { addItem, getItemQuantity } = useCart();
+  const { addItem, getItemQuantity } = useCart(); // Contexto do carrinho
   const navigate = useNavigate();
   const [addedQuantity, setAddedQuantity] = useState(0);
 
+  // Adiciona itens ao carrinho
   const handleAddToCart = (quantity) => {
     const item = { id, title, price, stock, pictureUrl };
     addItem(item, quantity);
     setAddedQuantity(quantity);
   };
 
+  // Finaliza a compra
   const handleFinalizePurchase = () => {
-    navigate("/cart");
+    navigate("/cart"); // Redireciona para o carrinho
   };
 
+  // Quantidade atual do item no carrinho
   const currentQuantityInCart = getItemQuantity(id);
+
+  // Calcula o estoque disponível, considerando o que já está no carrinho
   const maxStockAvailable = stock - currentQuantityInCart;
 
   return (
@@ -28,7 +37,7 @@ const ItemDetail = ({ id, title, description, price, pictureUrl, stock }) => {
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
         <p className="card-text">{description}</p>
-        <p className="card-text">Preço: R$ {price}</p>
+        <p className="card-text">Preço: R$ {price.toFixed(2)}</p>
         {addedQuantity === 0 ? (
           <ItemCount
             stock={maxStockAvailable}

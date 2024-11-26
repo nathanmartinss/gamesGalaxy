@@ -6,7 +6,7 @@ import {
   doc,
   getDoc,
 } from "firebase/firestore"; // Importa funções do Firestore
-import db from "../config/firebaseConfig"; // Configuração do Firebase
+import { db } from "../config/firebaseConfig"; // Configuração do Firebase
 
 /**
  * Função para buscar itens do Firestore com suporte a filtragem por categoria.

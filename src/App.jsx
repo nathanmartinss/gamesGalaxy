@@ -8,6 +8,7 @@ import CartPage from "./pages/CartPage/CartPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
 import ItemDetailPage from "./pages/ItemDetailPage/ItemDetailPage.jsx";
+import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
 
           {/* Página do carrinho */}
           <Route path="/cart" element={<CartPage />} />
+
+          {/* Página de Login */}
+          <Route path="/login" element={<LoginPage />} />
 
           {/* Página 404 para rotas inexistentes */}
           <Route path="*" element={<NotFoundPage />} />

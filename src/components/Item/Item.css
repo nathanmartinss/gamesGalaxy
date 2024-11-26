@@ -26,7 +26,7 @@
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  border: 1px solid #ddd;
+  border: 1px solid #fff;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -40,16 +40,16 @@
 }
 
 .add-to-cart-btn {
-  width: 70%;
-  margin: 10px auto;
-  padding: 8px;
-  background-color: #007bff;
-  color: white;
+  margin: 10px 10px 10px 10px;
+  padding: 5px;
+  background-color: blue;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .add-to-cart-btn:hover {
-  background-color: #0056b3;
+  background-color: rgb(8, 6, 129);
+  color: #fff;
 }

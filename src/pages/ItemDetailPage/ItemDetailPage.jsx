@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import ItemCount from "../../components/ItemCount/ItemCount";
 import { doc, getDoc } from "firebase/firestore";
-import db from "../../config/firebaseConfig";
+import { db } from "../../config/firebaseConfig";
 
 // Função assíncrona para buscar um item no Firestore pelo ID
 const fetchItemById = async (id) => {

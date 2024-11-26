@@ -29,7 +29,7 @@ const HomePage = () => {
               {/* Link para a página de detalhes do PlayStation 5 */}
               <Link
                 to="/details/MXQ3ydiMmtrepJaG0n60"
-                className="btn btn-primary"
+                className="btn-saiba-mais btn-primary"
               >
                 Saiba Mais
               </Link>
@@ -52,7 +52,7 @@ const HomePage = () => {
               {/* Link para a página de detalhes do Xbox Series X */}
               <Link
                 to="/details/l1331MqfLJ5ZTCooAk0n"
-                className="btn btn-primary"
+                className="btn-saiba-mais btn-primary"
               >
                 Saiba Mais
               </Link>
@@ -75,7 +75,7 @@ const HomePage = () => {
               {/* Link para a página de detalhes do Nintendo Switch */}
               <Link
                 to="/details/TWeD2dwKwOZtRxyto1pi"
-                className="btn btn-primary"
+                className="btn-saiba-mais btn-primary"
               >
                 Saiba Mais
               </Link>

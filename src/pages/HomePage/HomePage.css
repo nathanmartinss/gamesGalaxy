@@ -25,3 +25,20 @@
 .carousel .btn {
   margin-top: 10px;
 }
+
+.btn-saiba-mais {
+  width: 70%;
+  margin: 10px auto;
+  padding: 8px;
+  background-color: blue;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-saiba-mais:hover {
+  background-color: rgb(8, 6, 129);
+  color: #fff;
+}

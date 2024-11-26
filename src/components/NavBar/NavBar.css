@@ -1,3 +1,4 @@
+/* Estilo Geral */
 body {
   background-color: #000;
   color: #fff;
@@ -6,6 +7,7 @@ body {
   padding: 0;
 }
 
+/* Navbar */
 .navbar {
   background-color: #1a1a1a;
   padding: 0.5rem 1rem;
@@ -22,13 +24,8 @@ body {
 }
 
 .navbar-brand:hover {
-  color: #007bff;
+  color: blue;
   text-decoration: none;
-}
-
-.navbar-nav {
-  margin-left: 10px;
-  margin-right: 180px;
 }
 
 .nav-link {
@@ -38,7 +35,7 @@ body {
 }
 
 .nav-link:hover {
-  color: #007bff;
+  color: blue;
 }
 
 .navbar-toggler {
@@ -51,12 +48,17 @@ body {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-.cart-icon-container {
+/* Carrinho e Login */
+.cart-icon-container,
+.login-container {
   display: flex;
   align-items: center;
+  margin-left: 15px;
+}
+
+.cart-icon-container {
   position: relative;
   justify-content: flex-end;
-  margin-left: auto;
 }
 
 .cart-widget {
@@ -76,6 +78,23 @@ body {
   font-size: 0.8rem;
 }
 
+.login-btn {
+  color: #fff;
+  font-size: 1rem;
+  border: 1px solid #007bff;
+  background-color: transparent;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Media Queries */
 @media (max-width: 720px) {
   .navbar-nav {
     text-align: center;
@@ -87,10 +106,18 @@ body {
     padding: 1rem 0;
   }
 
-  .cart-icon-container {
+  .cart-icon-container,
+  .login-container {
     position: absolute;
     top: 10px;
+  }
+
+  .cart-icon-container {
     right: 15px;
+  }
+
+  .login-container {
+    right: 60px; /* Ajuste a posição do botão de login ao lado do ícone do carrinho */
   }
 
   .nav-link {

@@ -8,9 +8,9 @@ import CartPage from "./pages/CartPage/CartPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
 import ItemDetailPage from "./pages/ItemDetailPage/ItemDetailPage.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
-import OrdersPage from "./pages/OrdersPage/OrdersPage.jsx"; // Importa a página de pedidos
+import OrdersPage from "./pages/OrdersPage/OrdersPage.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
-import UserProvider from "./context/UserContext.jsx"; // Certifique-se de importar corretamente o UserProvider
+import UserProvider from "./context/UserContext.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {

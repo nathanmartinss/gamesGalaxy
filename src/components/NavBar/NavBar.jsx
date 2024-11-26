@@ -1,58 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./NavBar.css";
 import CartWidget from "../CartWidget/CartWidget";
-import { auth } from "../../config/firebaseConfig";
-import {
-  signInWithPopup,
-  GoogleAuthProvider,
-  signOut,
-  onAuthStateChanged,
-} from "firebase/auth";
 
 const NavBar = () => {
-  const [user, setUser] = useState(null); // Estado para armazenar as informações do usuário
-  const navigate = useNavigate();
+  const { user, logout } = useUser(); // Obtém o usuário e a função de logout do contexto
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para controlar o menu do usuário
+  const navigate = useNavigate(); // Cria uma instância de navigate
 
-  useEffect(() => {
-    // Observa o estado de autenticação do usuário
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser); // Atualiza o estado com as informações do usuário logado
-    });
-    return () => unsubscribe(); // Limpa o observador ao desmontar o componente
-  }, []);
-
-  const handleLogin = async () => {
-    // Função para realizar o login com o Google
-    try {
-      const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
-    } catch (error) {
-      console.error("Erro ao fazer login:", error);
-    }
-  };
-
-  const handleLogout = async () => {
-    // Função para realizar o logout
-    try {
-      await signOut(auth);
-      alert("Logout realizado com sucesso!");
-      navigate("/login"); // Redireciona para a página de login após o logout
-    } catch (error) {
-      console.error("Erro ao fazer logout:", error);
-    }
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
-        {/* Link para a página inicial */}
         <Link className="navbar-brand" to="/">
           Games Galaxy
         </Link>
-
-        {/* Botão para abrir/fechar a barra de navegação no modo mobile */}
         <button
           className="navbar-toggler"
           type="button"
@@ -64,8 +31,6 @@ const NavBar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-
-        {/* Links da barra de navegação */}
         <div
           className="collapse navbar-collapse justify-content-center"
           id="navbarNav"
@@ -89,22 +54,47 @@ const NavBar = () => {
           </ul>
         </div>
 
-        {/* Botão de login/logout */}
-        <div className="auth-button-container ms-3">
+        <div className="d-flex align-items-center">
+          <div className="cart-icon-container">
+            <CartWidget />
+          </div>
+
+          {/* Se o usuário estiver logado, mostra o nome e o menu */}
           {user ? (
-            <button className="btn btn-danger" onClick={handleLogout}>
-              Logout
-            </button>
+            <div className="user-menu-container" onClick={handleMenuToggle}>
+              <span className="user-name">{user.name || "Usuário"}</span>
+              {isMenuOpen && (
+                <div className="user-dropdown-menu">
+                  <ul>
+                    <li
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        navigate("/orders");
+                      }}
+                    >
+                      Meus Pedidos
+                    </li>
+                    <li
+                      onClick={() => {
+                        logout();
+                        setIsMenuOpen(false);
+                      }}
+                    >
+                      Logout
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
           ) : (
-            <button className="btn-login btn-primary" onClick={handleLogin}>
+            // Se não estiver logado, mostra o botão de login
+            <button
+              className="btn login-btn"
+              onClick={() => navigate("/login")}
+            >
               Login
             </button>
           )}
-        </div>
-
-        {/* Ícone do carrinho de compras */}
-        <div className="cart-icon-container">
-          <CartWidget />
         </div>
       </div>
     </nav>

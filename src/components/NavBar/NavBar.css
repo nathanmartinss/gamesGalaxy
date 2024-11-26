@@ -17,6 +17,12 @@ body {
   align-items: center;
 }
 
+.navbar-logo {
+  width: 40px; /* ajuste de acordo com o tamanho que preferir */
+  height: 40px;
+  margin-right: 10px; /* para dar espaço entre a logo e o texto */
+}
+
 /* Marca da Navbar */
 .navbar-brand {
   color: #fff;

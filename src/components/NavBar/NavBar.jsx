@@ -18,6 +18,11 @@ const NavBar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
         <Link className="navbar-brand" to="/">
+          <img
+            src={`${process.env.PUBLIC_URL}/favicon.ico`}
+            alt="Games Galaxy Logo"
+            className="navbar-logo"
+          />
           Games Galaxy
         </Link>
         <button

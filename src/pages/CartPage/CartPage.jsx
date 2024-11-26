@@ -1,12 +1,16 @@
 import React from "react";
 import { useCart } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext"; // Importar UserContext
+import { createOrder } from "../../utils/firestoreService";
 import "./CartPage.css";
 
 const CartPage = () => {
   const { cart, addItem, removeItem, clear, getTotalPrice } = useCart();
+  const { user } = useUser(); // Verificar se o usuário está logado
   const navigate = useNavigate();
 
+  // Função para aumentar a quantidade de um item no carrinho
   const handleIncrease = (item) => {
     if (item.quantity < 5 && item.quantity < item.stock) {
       addItem(item, 1);
@@ -15,6 +19,7 @@ const CartPage = () => {
     }
   };
 
+  // Função para diminuir a quantidade de um item no carrinho
   const handleDecrease = (item) => {
     if (item.quantity > 1) {
       addItem(item, -1);
@@ -23,10 +28,39 @@ const CartPage = () => {
     }
   };
 
-  const handleFinalizePurchase = () => {
-    alert("Compra finalizada! Obrigado por comprar conosco.");
-    clear();
-    navigate("/");
+  // Função para finalizar a compra
+  const handleFinalizePurchase = async () => {
+    if (!user) {
+      alert("Você precisa estar logado para finalizar a compra.");
+      return navigate("/login");
+    }
+
+    const buyer = {
+      name: user.name,
+      phone: "123456789", // Estes dados poderiam ser capturados através de um formulário mais detalhado
+      email: user.email,
+    };
+
+    const order = {
+      buyer,
+      items: cart.map((item) => ({
+        id: item.id,
+        title: item.title,
+        price: item.price,
+        quantity: item.quantity,
+      })),
+      total: getTotalPrice(),
+    };
+
+    try {
+      const orderId = await createOrder(order);
+      alert(`Pedido realizado com sucesso! ID da ordem: ${orderId}`);
+      clear();
+      navigate("/orders"); // Redireciona para a página "Meus Pedidos" após a compra
+    } catch (error) {
+      console.error("Erro ao finalizar compra:", error);
+      alert("Erro ao finalizar a compra. Tente novamente.");
+    }
   };
 
   return (

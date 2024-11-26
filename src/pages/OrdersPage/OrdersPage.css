@@ -1,0 +1,75 @@
+/* Estilo Geral da Página de Pedidos */
+.container-orderspage {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #ffffff;
+  background-color: #000000;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Título da Página */
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #f8f9fa;
+}
+
+/* Lista de Pedidos */
+.orders-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.orders-list li {
+  background-color: #292b2c;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.orders-list li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Informações do Pedido */
+.order-info {
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #e2e2e2;
+}
+
+.order-info span {
+  font-weight: bold;
+}
+
+/* Mensagem de Nenhum Pedido */
+.no-orders-message,
+.login-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-top: 20px;
+}
+
+/* Estilo Responsivo */
+@media (max-width: 720px) {
+  .container {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .orders-list li {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+}

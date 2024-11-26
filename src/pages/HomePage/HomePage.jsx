@@ -6,6 +6,9 @@ import "./HomePage.css";
 const HomePage = () => {
   return (
     <div className="container">
+      {/* Título da página inicial */}
+      <h2 className="titulo-homepage">Bem vindos a Game Galaxy!</h2>
+
       {/* Carrossel de produtos com informações e botão para navegar para os detalhes */}
       <div
         id="carouselSaibaMais"

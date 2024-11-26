@@ -1,3 +1,4 @@
+/* Estilo Geral da Página do Carrinho */
 .cart-page {
   max-width: 800px;
   margin: 20px auto;
@@ -8,6 +9,7 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Título da Página do Carrinho */
 .cart-page h1 {
   text-align: center;
   margin-bottom: 20px;
@@ -15,6 +17,7 @@
   color: #333;
 }
 
+/* Tabela do Carrinho */
 .cart-table {
   width: 100%;
   border-collapse: collapse;
@@ -55,25 +58,31 @@
   background-color: #0056b3;
 }
 
+/* Resumo do Carrinho */
 .cart-summary {
   text-align: right;
   background-color: #f1f1f1;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .cart-summary h3 {
-  margin: 0;
+  margin: 0 0 10px 0;
   font-size: 20px;
   font-weight: bold;
   color: #333;
 }
 
+/* Contêiner de Finalização e Limpeza */
 .finalize-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   margin-top: 20px;
   padding: 10px;
   background-color: #ffffff;
@@ -89,6 +98,8 @@
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin: 10px;
+  flex: 1;
 }
 
 .finalize-btn {
@@ -109,11 +120,15 @@
   background-color: #c82333;
 }
 
+/* Carrinho Vazio */
 .empty-cart {
   text-align: center;
   margin: 20px 0;
+  font-size: 18px;
+  color: #555;
 }
 
+/* Ajuste do Resumo do Carrinho */
 .cart-summary {
   display: flex;
   justify-content: space-between;
@@ -121,25 +136,44 @@
   margin-top: 20px;
 }
 
-.finalize-btn {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-}
+/* Media Queries - Mobile */
+@media (max-width: 768px) {
+  .cart-page {
+    padding: 15px;
+    width: 80%;
+  }
 
-.clear-btn {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-}
+  .cart-page h1 {
+    font-size: 20px;
+  }
 
-.cart-table th,
-.cart-table td {
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #ddd;
+  .cart-table {
+    font-size: 14px;
+    width: 20%;
+  }
+
+  .cart-table th,
+  .cart-table td {
+    padding: 8px;
+  }
+
+  .cart-summary {
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-summary h3 {
+    font-size: 18px;
+  }
+
+  .finalize-container {
+    flex-direction: column;
+  }
+
+  .finalize-btn,
+  .clear-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }

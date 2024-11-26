@@ -17,6 +17,9 @@ body {
   align-items: center;
 }
 
+.navbar-nav {
+  margin-right: 100px;
+}
 .navbar-logo {
   width: 40px; /* ajuste de acordo com o tamanho que preferir */
   height: 40px;

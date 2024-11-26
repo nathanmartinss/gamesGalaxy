@@ -9,7 +9,7 @@ body {
 
 /* Navbar */
 .navbar {
-  background-color: #1a1a1a;
+  background-color: #000000;
   padding: 0.5rem 1rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   display: flex;
@@ -17,6 +17,7 @@ body {
   align-items: center;
 }
 
+/* Marca da Navbar */
 .navbar-brand {
   color: #fff;
   font-weight: bold;
@@ -28,6 +29,7 @@ body {
   text-decoration: none;
 }
 
+/* Links de Navegação */
 .nav-link {
   color: #fff;
   font-size: 1rem;
@@ -38,9 +40,9 @@ body {
   color: blue;
 }
 
+/* Botão Navbar Toggler */
 .navbar-toggler {
   border: 1px solid #fff;
-  margin-right: 10px;
   padding: 0.25rem 0.75rem;
 }
 
@@ -48,17 +50,11 @@ body {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-/* Carrinho e Login */
-.cart-icon-container,
-.login-container {
+/* Carrinho */
+.cart-icon-container {
   display: flex;
   align-items: center;
-  margin-left: 15px;
-}
-
-.cart-icon-container {
   position: relative;
-  justify-content: flex-end;
 }
 
 .cart-widget {
@@ -78,6 +74,7 @@ body {
   font-size: 0.8rem;
 }
 
+/* Botão de Login */
 .login-btn {
   color: #fff;
   font-size: 1rem;
@@ -94,34 +91,57 @@ body {
   color: #fff;
 }
 
-/* Media Queries */
+/* Media Queries - Mobile */
 @media (max-width: 720px) {
   .navbar-nav {
     text-align: center;
     margin: 0;
+    color: blue;
   }
 
   .navbar-collapse {
-    background-color: #1a1a1a;
+    background-color: #000000;
     padding: 1rem 0;
-  }
-
-  .cart-icon-container,
-  .login-container {
-    position: absolute;
-    top: 10px;
-  }
-
-  .cart-icon-container {
-    right: 15px;
-  }
-
-  .login-container {
-    right: 60px; /* Ajuste a posição do botão de login ao lado do ícone do carrinho */
   }
 
   .nav-link {
     font-size: 1.2rem;
     padding: 0.5rem 1rem;
+  }
+
+  .btn-login {
+    display: block;
+    text-align: center;
+  }
+}
+
+/* Media Queries - Desktop */
+@media (min-width: 721px) {
+  .navbar {
+    padding: 1rem 2rem;
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .cart-icon-container {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .login-container {
+    margin-left: 10px;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+  .login-btn {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.8rem;
   }
 }

@@ -22,12 +22,15 @@
 .carousel img {
   object-fit: cover;
   max-height: 300px;
+  width: 100%;
 }
 
 .carousel-caption {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
   border-radius: 10px;
+  max-width: 90%;
+  margin: 0 auto;
 }
 
 .carousel .btn {
@@ -49,4 +52,37 @@
 .btn-saiba-mais:hover {
   background-color: rgb(8, 6, 129);
   color: #fff;
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 768px) {
+  .carousel {
+    margin: 10px;
+  }
+
+  .carousel img {
+    max-height: 200px; /* Ajusta a altura das imagens para telas menores */
+    width: 100%;
+  }
+
+  .carousel-caption {
+    font-size: 0.9rem; /* Reduz o tamanho do texto no carrossel */
+    padding: 5px;
+  }
+
+  .carousel .btn {
+    font-size: 0.8rem; /* Reduz o tamanho do botão */
+    padding: 5px 10px;
+  }
+
+  .btn-saiba-mais {
+    width: 90%; /* Deixa o botão ocupar quase toda a largura da tela */
+    font-size: 0.9rem;
+  }
+
+  .titulo-homepage,
+  .texto-homepage {
+    font-size: 1.2rem; /* Ajusta os títulos para serem menores em dispositivos móveis */
+    margin: 10px;
+  }
 }

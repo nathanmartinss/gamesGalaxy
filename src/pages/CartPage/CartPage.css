@@ -140,7 +140,7 @@
 @media (max-width: 768px) {
   .cart-page {
     padding: 15px;
-    width: 80%;
+    width: auto;
   }
 
   .cart-page h1 {
@@ -149,7 +149,6 @@
 
   .cart-table {
     font-size: 14px;
-    width: 20%;
   }
 
   .cart-table th,

@@ -46,7 +46,6 @@ O site está hospedado no **Vercel** e pode ser acessado através do seguinte li
 - [x] **Carrinho de Compras**: Possibilidade de adicionar produtos ao carrinho, alterar quantidades e finalizar a compra.
 - [x] **Autenticação com Google**: Login seguro utilizando a conta do Google para realizar pedidos.
 - [x] **Pedidos**: Usuários logados podem ver seus pedidos passados e detalhes de cada ordem realizada.
-- [x] **Estoque Dinâmico**: Atualização automática do estoque baseado nas compras realizadas.
 
 ## 📝 Licenças
 
